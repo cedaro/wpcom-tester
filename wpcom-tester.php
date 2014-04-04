@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WPCOM Tester
  * Plugin URI: http://wordpress.org/extend/plugins/wpcom-tester/
- * Description: This plugin loads <code>wpcom.php</code> compatibility file from <code>inc/</code> or <code>includes/</code> folder if availble. The plugin also defines the <code>IS_WPCOM</code> constant.
+ * Description: This plugin loads the <code>wpcom.php</code> compatibility file from <code>inc/</code> or <code>includes/</code> folder if it exists. The plugin also defines the <code>IS_WPCOM</code> constant.
  * Author: <a href="http://lukemcdonald.com">Luke McDonald</a>
  * Version: 1.0.0
  *
