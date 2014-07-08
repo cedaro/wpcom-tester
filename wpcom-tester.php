@@ -15,15 +15,7 @@ if ( ! defined( 'IS_WPCOM' ) ) {
 	define( 'IS_WPCOM', true );
 }
 
-$wpcom_filenames = array(
-	get_template_directory() . '/includes/wpcom.php',
-	get_template_directory() . '/inc/wpcom.php'
-);
-
-foreach ( $wpcom_filenames as $filename ) {
-	if ( file_exists( $filename ) ) {
-		require( $filename );
-		break;
-	}
+function wpcom_tester_setup() {
+	require_once( get_template_directory() . '/includes/wpcom.php' );
 }
-
+add_action( 'plugins_loaded', 'wpcom_tester_setup' );
