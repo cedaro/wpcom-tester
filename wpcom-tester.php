@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WPCOM Tester
  * Plugin URI: http://wordpress.org/extend/plugins/wpcom-tester/
- * Description: This plugin loads the <code>wpcom.php</code> compatibility file from <code>inc/</code> or <code>includes/</code> folder if it exists. The plugin also defines the <code>IS_WPCOM</code> constant.
+ * Description: Adds basic functionality to replicate the WP.com environment by defining and loading specific variables, functionality, and compatibility files.
  * Author: <a href="http://lukemcdonald.com">Luke McDonald</a>
  * Version: 1.0.0
  */
@@ -32,8 +32,12 @@ if ( ! defined( 'IS_WPCOM' ) ) {
  * @todo Load child theme compat file if available.
  */
 function wpcom_tester_setup() {
-	// I always include my WPCOM compat file in the includes folder, so I won't
-	// worry about checking '/inc' folder.
-	require_once( get_template_directory() . '/includes/wpcom.php' );
+	// I include my WPCOM compat file in the includes directory, so I won't
+	// worry about checking '/inc' directory.
+	$wpcom = get_template_directory() . '/includes/wpcom.php';
+
+	if ( file_exists( $wpcom ) ) {
+		require_once( $wpcom );
+	}
 }
 add_action( 'after_setup_theme', 'wpcom_tester_setup', 0 );
