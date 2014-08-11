@@ -28,16 +28,19 @@ if ( ! defined( 'IS_WPCOM' ) ) {
  * Including happens much like functions.php. If the file is present in a child
  * theme, it will be loaded from there first; if it's also present in the parent
  * theme, that will also be included immediately afterwards.
- *
- * @todo Load child theme compat file if available.
  */
 function wpcom_tester_setup() {
-	// I include my WPCOM compat file in the includes directory, so I won't
-	// worry about checking '/inc' directory.
-	$wpcom = get_template_directory() . '/includes/wpcom.php';
+	$wpcom_files = array(
+		get_stylesheet_directory() . '/inc/wpcom.php',
+		get_stylesheet_directory() . '/includes/wpcom.php',
+		get_template_directory() . '/inc/wpcom.php',
+		get_template_directory() . '/includes/wpcom.php',
+	);
 
-	if ( file_exists( $wpcom ) ) {
-		require_once( $wpcom );
+	foreach ( $wpcom_files as $file ) {
+		if ( file_exists( $file ) ) {
+			require_once( $file );
+		}
 	}
 }
 add_action( 'after_setup_theme', 'wpcom_tester_setup', 0 );
