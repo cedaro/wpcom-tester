@@ -44,3 +44,14 @@ function wpcom_tester_setup() {
 	}
 }
 add_action( 'after_setup_theme', 'wpcom_tester_setup', 0 );
+
+if ( ! function_exists( 'has_any_blog_stickers' ) ) :
+/**
+ * Shim to prevent a fatal error in Jetpack_WordAds_Gutenblock::is_available().
+ *
+ * @return boolean
+ */
+function has_any_blog_stickers() {
+	return false;
+}
+endif;
